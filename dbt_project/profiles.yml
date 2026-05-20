@@ -1,0 +1,6 @@
+transplant_pgx:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "../data/duckdb/transplant_pgx.duckdb"

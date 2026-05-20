@@ -1,0 +1,16 @@
+name: transplant_pgx
+version: '0.1.0'
+config-version: 2
+profile: transplant_pgx
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+models:
+  transplant_pgx:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

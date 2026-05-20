@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TransplantPGxExposure",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["country_iso3", "population_code", "drug_name", "gene_symbol", "percentage_requiring_change"],
+    "properties": {
+      "country_iso3": { "type": "string" },
+      "country_name": { "type": "string" },
+      "transplants_pmp": { "type": ["number", "null"] },
+      "total_transplants": { "type": ["integer", "null"] },
+      "data_year": { "type": "integer" },
+      "population_code": { "type": "string" },
+      "drug_name": { "type": "string" },
+      "gene_symbol": { "type": "string" },
+      "percentage_requiring_change": { "type": "number" },
+      "baseline_ceu_percentage": { "type": "number" },
+      "delta_vs_baseline": { "type": "number" },
+      "classification_strength": { "type": "string" },
+      "estimated_recipients_needing_adjustment": { "type": ["number", "null"] }
+    }
+  }
+}
