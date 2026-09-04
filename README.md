@@ -1,5 +1,7 @@
 # transplant-pgx-risk-atlas
 
+**Live demo:** [eredonda.com/projects/transplant-pgx-risk-atlas](https://eredonda.com/projects/transplant-pgx-risk-atlas?utm_source=github&utm_medium=referral)
+
 Integration layer that crosses global transplant volumes with pharmacogenomic risk profiles for immunosuppressants, quantifying what percentage of LATAM transplant recipients would require tacrolimus or azathioprine dose adjustment under standard European-derived CPIC guidelines.
 
 ## What This Repo Does
@@ -57,3 +59,24 @@ gold/
 - Data artifacts consumed from upstream pipeline repos; this repo contains the integration layer only.
 - Source code for raw ingestion lives in `transplant-atlas`, `transplant-waitlist-atlas`, and `pgx-latam-atlas` respectively.
 - The React visualisation component (`TransplantPgxRiskAtlasPage.tsx`) and processed JSON outputs live in the portfolio repo `data-dive-design-hub`.
+
+## Methodological limits
+
+The cohorts are not the patients. 1000 Genomes panels (MXL, PEL, CLM, PUR
+against CEU) are population samples of genetic ancestry, not transplant
+recipients, and IRODaT reports no recipient ancestry. The country-to-cohort
+mapping in `POPULATION_COUNTRY_MAP` is a geographic proxy: PEL stands in for
+Peru rather than describing Peru's actual transplant population. What comes out
+is a population-level, ecological estimate of expected dosing burden, not a
+measurement of any patient group.
+
+Cohort sizes are 61 to 113 individuals, so a percentage point is a handful of
+people. None of this is clinical guidance; CPIC guidelines are the clinical
+reference.
+
+## Data & licenses
+
+- **IRODaT** and **GODT**: used with attribution, aggregated rows only.
+- **1000 Genomes Project** Phase 3: open access. **PharmGKB**: CC BY-SA 4.0.
+  **CPIC**: open-access guidelines.
+- Code: MIT, see [LICENSE](LICENSE).
