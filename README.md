@@ -6,7 +6,7 @@ Integration layer that crosses global transplant volumes with pharmacogenomic ri
 
 ## What This Repo Does
 
-This repository contains the **integration pipeline** — it joins outputs from upstream domain-specific pipelines into a unified risk estimate. It does NOT re-run raw data ingestion; it consumes curated artifacts from the repos listed below.
+This repository contains the **integration pipeline**: it joins outputs from upstream domain-specific pipelines into a unified risk estimate. It does NOT re-run raw data ingestion; it consumes curated artifacts from the repos listed below.
 
 ## Upstream Data Sources
 
@@ -50,9 +50,9 @@ gold/
 
 ## Key Drugs and Genes
 
-- **Tacrolimus / CYP3A5** — calcineurin inhibitor used in kidney, liver, and heart transplants. CYP3A5 Extensive Metabolizers (*1 carriers) require significantly higher doses; CYP3A5*1 frequency varies substantially across LATAM populations vs European baseline.
-- **Azathioprine / TPMT** — thiopurine immunosuppressant. TPMT Poor Metabolizers face severe myelotoxicity at standard doses.
-- **Azathioprine / NUDT15** — NUDT15*3 (rs116855232) is markedly more prevalent in East Asian and Latin American populations. Standard CPIC tables calibrated on European data systematically underestimate NUDT15-driven risk in LATAM recipients.
+- **Tacrolimus / CYP3A5**: calcineurin inhibitor used in kidney, liver, and heart transplants. CYP3A5 Extensive Metabolizers (*1 carriers) require significantly higher doses; CYP3A5*1 frequency varies substantially across LATAM populations vs European baseline.
+- **Azathioprine / TPMT**: thiopurine immunosuppressant. TPMT Poor Metabolizers face severe myelotoxicity at standard doses.
+- **Azathioprine / NUDT15**: NUDT15*3 (rs116855232) is markedly more prevalent in East Asian and Latin American populations. Standard CPIC tables calibrated on European data systematically underestimate NUDT15-driven risk in LATAM recipients.
 
 ## Notes
 
