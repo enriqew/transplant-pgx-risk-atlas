@@ -6,6 +6,10 @@ from pathlib import Path
 
 
 # Map 1000 Genomes population codes to country ISO3
+# 1000 Genomes cohort code -> ISO3 country used as its geographic proxy.
+# Kept in sync with pop_map in dbt_project/models/marts/fct_transplant_pgx_exposure.sql.
+# The cohorts are ancestry reference panels, not transplant recipients: this
+# mapping is a proxy, not a claim about either country's patient population.
 POPULATION_COUNTRY_MAP = {
     "MXL": "MEX",
     "PEL": "PER",
@@ -26,6 +30,14 @@ def build_gold(conn: duckdb.DuckDBPyConnection) -> None:
             year,
             ROW_NUMBER() OVER (PARTITION BY country_iso3 ORDER BY year DESC) AS rn
         FROM silver_transplant_volumes
+    ),
+    pop_map AS (
+        SELECT * FROM (VALUES
+            ('MXL', 'MEX'),
+            ('PEL', 'PER'),
+            ('CLM', 'COL'),
+            ('PUR', 'PRI')
+        ) AS t(population_code, country_iso3)
     ),
     pgx_by_pop AS (
         SELECT
@@ -54,7 +66,9 @@ def build_gold(conn: duckdb.DuckDBPyConnection) -> None:
         -- Exposure = transplant volume × PGx risk rate
         ROUND(lt.total_transplants * p.percentage_requiring_change / 100, 0) AS estimated_recipients_needing_adjustment
     FROM latest_transplants lt
+    JOIN pop_map m
+        ON lt.country_iso3 = m.country_iso3
     JOIN pgx_by_pop p
-        ON lt.country_iso3 = p.population_code
+        ON p.population_code = m.population_code
     WHERE lt.rn = 1
     """)
